@@ -1,0 +1,21 @@
+module.exports = function (pool) {
+    // remember the initialize regNumberMap from storeRegNumbers - to support localStorage vertical
+    
+    async function addRegNumber(regNumber) {
+    // console.log(regNumber)
+    var initial = regNumber.split(" ")[0].trim();
+    
+     let regs = await pool.query('select id from towns where reginitial = $1',[initial])
+     console.log(regs, initial, regNumber);
+     
+     if(regs.rowCount == 0) {
+    
+      // return 'PLEASE ENTER A VALID REGISTRATION IN CAPS (eg. CA .., CK .., CY .. , CAW ..)' ;
+    
+    } else {
+    
+      // let  await pool.query('select registrations from registrationNumber where registrations =$1 ',[regNumber] );
+        await pool.query('insert into registrationNumber  (town_id, registrations) values($1 , $2)',[regs.rows[0].id, regNumber])
+      }
+  
+  
