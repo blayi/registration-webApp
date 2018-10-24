@@ -1,7 +1,7 @@
 module.exports = function (pool) {
     // remember the initialize regNumberMap from storeRegNumbers - to support localStorage vertical
     
-    async function addRegNumber(regNumber) {
+    async function regNoAdd(regNumber) {
     // console.log(regNumber)
     var initial = regNumber.split(" ")[0].trim();
     
